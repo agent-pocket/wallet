@@ -413,3 +413,26 @@ p {
   position: relative;
   z-index: 320;
 }
+
+.confirmation-page {
+  gap: 10px;
+}
+
+.confirmation-actions {
+  margin-top: auto;
+}
+
+.confirmation-message {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 8px;
+}
+
+.confirmation-message .neu-card {
+  padding: 12px;
+}
+
+.confirmation-message-box {
+  max-height: 220px;
+  min-height: 150px;
+}

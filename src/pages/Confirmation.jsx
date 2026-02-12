@@ -35,48 +35,72 @@ function Confirmation() {
     if (!request) return <div className="page"><Card>No pending request found.</Card></div>;
 
     const { params, method } = request;
+    const normalizedMethod = String(method || '').toLowerCase();
+    const isMessageSignature = ['sign_message', 'personal_sign', 'eth_sign', 'eth_signtypeddata', 'eth_signtypeddata_v4']
+        .some((keyword) => normalizedMethod.includes(keyword));
     const tx = params[0] || {};
     const to = tx.to || 'Unknown';
     const value = tx.value ? ethers.formatEther(tx.value) : '0';
     const chainId = tx.chainId || 'Unknown';
+    const messagePayload = typeof params?.[0] === 'string'
+        ? params[0]
+        : JSON.stringify(params?.[0] ?? params ?? '', null, 2);
 
     return (
-        <div className="page">
+        <div className={`page confirmation-page ${isMessageSignature ? 'confirmation-message' : ''}`}>
             <h2 style={{ textAlign: 'center', fontSize: 21 }}>Confirm Request</h2>
 
-            <Card className="col gap-12" style={{ flex: 1 }}>
+            <Card className="col gap-12" style={{ flex: 1, minHeight: 0 }}>
                 <Card variant="inset" style={{ padding: 10, textAlign: 'center' }}>
                     <span className="section-title" style={{ color: 'var(--text-secondary)' }}>{method.replace('_', ' ')}</span>
                 </Card>
 
-                <div className="col gap-8">
-                    <p className="section-title">Chain ID</p>
-                    <strong>{chainId}</strong>
-                </div>
+                {isMessageSignature ? (
+                    <>
+                        <div className="col gap-8">
+                            <p className="section-title">Message</p>
+                            <Card variant="inset" className="confirmation-message-box page-scroll" style={{ padding: 10 }}>
+                                <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all', whiteSpace: 'pre-wrap' }}>
+                                    {messagePayload}
+                                </p>
+                            </Card>
+                        </div>
+                        <p className="subtitle" style={{ fontSize: 11 }}>
+                            Only sign messages you trust. Signature can be used to verify wallet ownership.
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <div className="col gap-8">
+                            <p className="section-title">Chain ID</p>
+                            <strong>{chainId}</strong>
+                        </div>
 
-                <div className="col gap-8">
-                    <p className="section-title">To</p>
-                    <Card variant="inset" style={{ padding: 10 }}>
-                        <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{to}</p>
-                    </Card>
-                </div>
+                        <div className="col gap-8">
+                            <p className="section-title">To</p>
+                            <Card variant="inset" style={{ padding: 10 }}>
+                                <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{to}</p>
+                            </Card>
+                        </div>
 
-                <div className="col gap-8">
-                    <p className="section-title">Value</p>
-                    <div className="big-balance" style={{ fontSize: 28 }}>{value} <span style={{ fontSize: 14 }}>ETH</span></div>
-                </div>
+                        <div className="col gap-8">
+                            <p className="section-title">Value</p>
+                            <div className="big-balance" style={{ fontSize: 28 }}>{value} <span style={{ fontSize: 14 }}>ETH</span></div>
+                        </div>
 
-                {tx.data && tx.data !== '0x' && (
-                    <div className="col gap-8">
-                        <p className="section-title">Data</p>
-                        <Card variant="inset" className="page-scroll" style={{ maxHeight: 90, padding: 10 }}>
-                            <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{tx.data}</p>
-                        </Card>
-                    </div>
+                        {tx.data && tx.data !== '0x' && (
+                            <div className="col gap-8">
+                                <p className="section-title">Data</p>
+                                <Card variant="inset" className="page-scroll" style={{ maxHeight: 90, padding: 10 }}>
+                                    <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{tx.data}</p>
+                                </Card>
+                            </div>
+                        )}
+                    </>
                 )}
             </Card>
 
-            <div className="row gap-10">
+            <div className="row gap-10 confirmation-actions">
                 <Button onClick={handleReject} variant="danger">
                     <XCircle size={14} /> Reject
                 </Button>
