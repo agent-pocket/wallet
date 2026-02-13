@@ -48,11 +48,11 @@ function Welcome({ onComplete }) {
         return (
             <div className="page">
                 <Card className="col center gap-12" style={{ padding: 14 }}>
-                    <img src={banner} alt="Meme Wallet Banner" style={{ width: '100%', borderRadius: 14, border: '1px solid rgba(255,255,255,.35)' }} />
+                    <img src={banner} alt="Agent Pocket Banner" style={{ width: '100%', borderRadius: 14, border: '1px solid rgba(255,255,255,.35)' }} />
                     <div className="logo-box">
-                        <img src={logo} alt="Meme Wallet" style={{ width: '100%', height: '100%' }} />
+                        <img src={logo} alt="Agent Pocket" style={{ width: '100%', height: '100%' }} />
                     </div>
-                    <h2 style={{ fontSize: 21 }}>Meme Wallet</h2>
+                    <h2 style={{ fontSize: 21 }}>Agent Pocket</h2>
                     <p className="subtitle" style={{ textAlign: 'center' }}>BNB-friendly wallet with on-chain utility and extension workflows.</p>
                 </Card>
 

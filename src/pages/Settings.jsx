@@ -5,10 +5,12 @@ import Input from '../components/Input';
 import Card from '../components/Card';
 import { KeyringController } from '../lib/keyring';
 
+const DEFAULT_RELAY_URL = 'wss://relay.apocket.xyz/';
+
 function Settings({ onBack, networkController }) {
     const [rpcUrl, setRpcUrl] = useState('');
     const [networkKey, setNetworkKey] = useState('bsc');
-    const [relayUrl, setRelayUrl] = useState('');
+    const [relayUrl, setRelayUrl] = useState(DEFAULT_RELAY_URL);
     const [isConnected, setIsConnected] = useState(false);
     const [msg, setMsg] = useState({ text: '', type: '' });
 
@@ -34,7 +36,7 @@ function Settings({ onBack, networkController }) {
 
     React.useEffect(() => {
         chrome.storage.local.get('relayUrl').then((data) => {
-            if (data.relayUrl) setRelayUrl(data.relayUrl);
+            setRelayUrl(data.relayUrl || DEFAULT_RELAY_URL);
         });
     }, []);
 
@@ -157,7 +159,7 @@ function Settings({ onBack, networkController }) {
                         </span>
                     </div>
                     <div className="row gap-8">
-                        <Input value={relayUrl} onChange={(e) => setRelayUrl(e.target.value)} placeholder="ws://localhost:8080" />
+                        <Input value={relayUrl} onChange={(e) => setRelayUrl(e.target.value)} placeholder={DEFAULT_RELAY_URL} />
                         <Button onClick={toggleConnection} size="sm" variant={isConnected ? 'danger' : 'ghost'} style={{ width: 'auto', minWidth: 88 }}>
                             {isConnected ? 'Disconnect' : 'Connect'}
                         </Button>
@@ -220,7 +222,7 @@ function Settings({ onBack, networkController }) {
                 )}
             </Card>
 
-            <p className="subtitle" style={{ textAlign: 'center', paddingBottom: 4 }}>Meme Wallet v1.0.0</p>
+            <p className="subtitle" style={{ textAlign: 'center', paddingBottom: 4 }}>Agent Pocket v1.0.0</p>
         </div>
     );
 }

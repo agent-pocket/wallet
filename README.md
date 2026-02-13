@@ -1,14 +1,14 @@
-# Agent pocket
+# Agent Pocket
 
 ![Banner](src/res/banner.png)
 
-Agent pocket is a lightweight EVM wallet extension focused on fast signing and relay-driven agent workflows.
+Agent Pocket is a lightweight EVM wallet extension focused on fast signing and relay-driven agent workflows.
 
 Website: **https://apocket.xyz**
 
 ## Overview
 
-Agent pocket is built as a Chrome extension wallet with:
+Agent Pocket is built as a Chrome extension wallet with:
 - local key management
 - multi-network EVM support
 - transaction/signature confirmation flow

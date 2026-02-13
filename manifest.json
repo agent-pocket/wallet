@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Meme Wallet",
+    "name": "Agent Pocket",
     "version": "1.0.0",
     "action": {
         "default_popup": "index.html",

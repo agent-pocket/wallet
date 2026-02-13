@@ -90,7 +90,7 @@ function Home({ onSend, onReceive, onSettings, onAddToken, network, setNetwork, 
         <div className="page">
             <div className="row-between gap-10 home-topbar">
                 <div className="logo-box">
-                    <img src={logo} alt="Meme Wallet" style={{ width: '100%', height: '100%' }} />
+                    <img src={logo} alt="Agent Pocket" style={{ width: '100%', height: '100%' }} />
                 </div>
                 <NetworkSelector network={network} setNetwork={setNetwork} networks={networks} />
                 <Button onClick={onSettings} className="icon-btn" variant="ghost" aria-label="Settings">

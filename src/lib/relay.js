@@ -3,6 +3,8 @@ import nacl from 'tweetnacl';
 import { KeyringController } from './keyring';
 import { NetworkController } from './networks';
 
+const DEFAULT_RELAY_URL = 'wss://relay.apocket.xyz/';
+
 export class RelayController {
     constructor() {
         this.ws = null;
@@ -21,9 +23,9 @@ export class RelayController {
 
         // 1. Load Config
         const data = await chrome.storage.local.get('relayUrl');
-        if (data.relayUrl) {
-            this.connect(data.relayUrl);
-        }
+        const relayUrl = data.relayUrl || DEFAULT_RELAY_URL;
+        await chrome.storage.local.set({ relayUrl });
+        this.connect(relayUrl);
 
         // 2. Listeners
         chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
