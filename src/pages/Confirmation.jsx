@@ -48,10 +48,10 @@ function Confirmation() {
 
     return (
         <div className={`page confirmation-page ${isMessageSignature ? 'confirmation-message' : ''}`}>
-            <h2 style={{ textAlign: 'center', fontSize: 21 }}>Confirm Request</h2>
+            <h2 className="confirmation-title">Confirm Request</h2>
 
-            <Card className="col gap-12" style={{ flex: 1, minHeight: 0 }}>
-                <Card variant="inset" style={{ padding: 10, textAlign: 'center' }}>
+            <Card className="col confirmation-main" style={{ minHeight: 0 }}>
+                <Card variant="inset" style={{ padding: 8, textAlign: 'center' }}>
                     <span className="section-title" style={{ color: 'var(--text-secondary)' }}>{method.replace('_', ' ')}</span>
                 </Card>
 
@@ -59,7 +59,7 @@ function Confirmation() {
                     <>
                         <div className="col gap-8">
                             <p className="section-title">Message</p>
-                            <Card variant="inset" className="confirmation-message-box page-scroll" style={{ padding: 10 }}>
+                            <Card variant="inset" className="confirmation-message-box page-scroll" style={{ padding: 8 }}>
                                 <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all', whiteSpace: 'pre-wrap' }}>
                                     {messagePayload}
                                 </p>
@@ -78,20 +78,20 @@ function Confirmation() {
 
                         <div className="col gap-8">
                             <p className="section-title">To</p>
-                            <Card variant="inset" style={{ padding: 10 }}>
+                            <Card variant="inset" style={{ padding: 8 }}>
                                 <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{to}</p>
                             </Card>
                         </div>
 
                         <div className="col gap-8">
                             <p className="section-title">Value</p>
-                            <div className="big-balance" style={{ fontSize: 28 }}>{value} <span style={{ fontSize: 14 }}>ETH</span></div>
+                            <div className="big-balance" style={{ fontSize: 22 }}>{value} <span style={{ fontSize: 12 }}>ETH</span></div>
                         </div>
 
                         {tx.data && tx.data !== '0x' && (
                             <div className="col gap-8">
                                 <p className="section-title">Data</p>
-                                <Card variant="inset" className="page-scroll" style={{ maxHeight: 90, padding: 10 }}>
+                                <Card variant="inset" className="page-scroll" style={{ maxHeight: 70, padding: 8 }}>
                                     <p className="mono" style={{ fontSize: 11, wordBreak: 'break-all' }}>{tx.data}</p>
                                 </Card>
                             </div>

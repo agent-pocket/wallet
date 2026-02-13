@@ -415,24 +415,69 @@ p {
 }
 
 .confirmation-page {
-  gap: 10px;
+  position: fixed;
+  inset: 0;
+  width: auto;
+  height: auto;
+  padding: 8px;
+  gap: 5px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+.confirmation-title {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.1;
 }
 
 .confirmation-actions {
-  margin-top: auto;
+  margin-top: 0;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: max(4px, env(safe-area-inset-bottom));
 }
 
 .confirmation-message {
-  padding-top: 14px;
-  padding-bottom: 14px;
-  gap: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  gap: 4px;
 }
 
-.confirmation-message .neu-card {
-  padding: 12px;
+.confirmation-main {
+  gap: 6px;
+  padding: 8px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.confirmation-main .neu-card {
+  padding: 6px;
+}
+
+.confirmation-main .section-title {
+  font-size: 10px;
+  letter-spacing: 0.3px;
+}
+
+.confirmation-page .subtitle {
+  font-size: 9px;
 }
 
 .confirmation-message-box {
-  max-height: 220px;
-  min-height: 150px;
+  max-height: 105px;
+  min-height: 75px;
+}
+
+.confirmation-actions .neu-btn {
+  min-height: 32px;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.confirmation-actions .neu-btn svg {
+  width: 12px;
+  height: 12px;
 }
